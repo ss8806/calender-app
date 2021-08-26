@@ -36,3 +36,27 @@ export const isFirstDay = (day) => day.date() === 1;
 export const getMonth = ({ year, month }) => {
   return dayjs(`${year}-${month}`);
 };
+
+export const getNextMonth = (month) => {
+  const day = getMonth(month).add(1, "month");
+  return formatMonth(day);
+};
+
+export const getPreviousMonth = (month) => {
+  const day = getMonth(month).add(-1, "month");
+  return formatMonth(day);
+};
+// 上記をさらに抽象化
+// getMonthStateCreatorという関数を返す関数（＝高階関数）を実装して、その返り値の関数を実際に使う関数として使っています。
+
+// const getMonthStateCreator = diff => month => {
+//   const day = getMonth(month).add(diff, "month");
+//   return formatMonth(day);
+// };
+// export const getNextMonth = getMonthStateCreator(1);
+// export const getPreviousMonth = getMonthStateCreator(-1)
+
+export const formatMonth = (day) => ({
+  month: day.month() + 1,
+  year: day.year(),
+});

@@ -1,14 +1,13 @@
 import React from "react";
 import { GridList, Typography } from "@material-ui/core";
 import * as styles from "./style.css";
-//import { createCalendar } from "../../services/calendar";
 import CalendarElement from "../CalendarElement";
 
 //const calendar = createCalendar();
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
-const CalendarBoard = ({ calendar }) => {
+const CalendarBoard = ({ calendar, month }) => {
   console.log(calendar);
 
   return (
@@ -32,7 +31,8 @@ const CalendarBoard = ({ calendar }) => {
           <li key={c.toISOString()}>
             {/* <div className={styles.element}>{c.format("D")}</div> */}
             {/* <CalendarElement>{c.format("D")}</CalendarElement> */}
-            <CalendarElement day={c} />
+            {/* <CalendarElement day={c} /> */}
+            <CalendarElement day={c} month={month} />
           </li>
         ))}
       </GridList>
