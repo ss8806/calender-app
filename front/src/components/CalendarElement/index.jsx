@@ -1,11 +1,51 @@
 import React from "react";
-
 import * as styles from "./style.css";
+import dayjs from "dayjs";
+import { isSameMonth, isFirstDay, isSameDay } from "../../services/calendar";
+import { Typography } from "@material-ui/core";
 
-const CalendarElement = ({ children }) => {
+const CalendarElement = ({ day }) => {
+  // // 当日かどうか判断
+  // const today = dayjs();
+  // const compareFormat = "YYYYMMDD";
+  // const isToday = day.format(compareFormat) === today.format(compareFormat);
+
+  // // 今月以外をグレーダウン
+  // const isCurrentMonth = day.month() === today.month();
+  // const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
+
+  // // 文字列のフォーマットをどうするか
+  // const isFirstDay = day.date() === 1;
+
+  // // 月の最初だけ月情報をつける
+  // const format = isFirstDay ? "M月D日" : "D";
+
+  const today = dayjs();
+
+  // 今月以外をグレーダウン
+  const isCurrentMonth = isSameMonth(day, today);
+  const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
+
+  // 文字列のフォーマットをどうするか
+  // 月の最初だけ月情報をつける
+  const format = isFirstDay(day) ? "M月D日" : "D";
+
+  // 当日かどうか判断
+  const isToday = isSameDay(day, today);
+
   return (
     <div className={styles.element}>
-      <div className={styles.date}>{children}</div>
+      <Typography
+        className={styles.date}
+        color={textColor}
+        align="center"
+        variant="caption"
+        component="div"
+      >
+        <span className={isToday ? styles.today : ""}>
+          {day.format(format)}
+        </span>
+      </Typography>
     </div>
   );
 };
