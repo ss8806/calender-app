@@ -9,20 +9,21 @@ import {
 } from "../../services/calendar";
 import { Typography } from "@material-ui/core";
 
+// CalendarBoard/presentationから dayとmonth が props として渡ってくる
 const CalendarElement = ({ day, month }) => {
-  // // 当日かどうか判断
   // const today = dayjs();
   // const compareFormat = "YYYYMMDD";
+  // 当日かどうか判断
   // const isToday = day.format(compareFormat) === today.format(compareFormat);
 
-  // // 今月以外をグレーダウン
+  // 今月以外をグレーダウン
   // const isCurrentMonth = day.month() === today.month();
   // const textColor = isCurrentMonth ? "textPrimary" : "textSecondary";
 
-  // // 文字列のフォーマットをどうするか
+  // 文字列のフォーマットをどうするか
   // const isFirstDay = day.date() === 1;
 
-  // // 月の最初だけ月情報をつける
+  // 月の最初だけ月情報をつける
   // const format = isFirstDay ? "M月D日" : "D";
 
   const today = dayjs();
@@ -51,7 +52,9 @@ const CalendarElement = ({ day, month }) => {
         variant="caption"
         component="div"
       >
+        {/* 本日の色を変える処理 */}
         <span className={isToday ? styles.today : ""}>
+          {/* {day.format("D")} */}
           {day.format(format)}
         </span>
       </Typography>

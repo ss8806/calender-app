@@ -1,13 +1,27 @@
 import { connect } from "react-redux";
 import CalendarBoard from "./presentation";
 import { createCalendar } from "../../services/calendar";
+import { addScheduleOpenDialog } from "../../redux/addSchedule/actions";
 
 const mapStateToProps = (state) => ({ calendar: state.calendar });
 
+const mapDispatchToProps = (dispatch) => ({
+  openAddScheduleDialog: () => {
+    dispatch(addScheduleOpenDialog());
+  },
+});
+
 // mergePropsはmapStateToPropsの結果が前回と異なっていたときにだけ実行されます。
-const mergeProps = (stateProps) => ({
+// stateProps は mapStateToPropsで生成されたprops と mapDisapatchToPropsで生成されたprops のこと
+const mergeProps = (stateProps, dispatchProps) => ({
+  ...stateProps,
+  ...dispatchProps,
   month: stateProps.calendar,
   calendar: createCalendar(stateProps.calendar),
 });
 
-export default connect(mapStateToProps, null, mergeProps)(CalendarBoard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps
+)(CalendarBoard);

@@ -3,12 +3,12 @@ import { GridList, Typography } from "@material-ui/core";
 import * as styles from "./style.css";
 import CalendarElement from "../CalendarElement";
 
-//const calendar = createCalendar();
+//const calendar = createCalendar(); reduxで作成されるので不要
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
-const CalendarBoard = ({ calendar, month }) => {
-  console.log(calendar);
+const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
+  console.log(calendar); // calendarはstate
 
   return (
     <div className={styles.container}>
@@ -28,7 +28,9 @@ const CalendarBoard = ({ calendar, month }) => {
         ))}
 
         {calendar.map((c) => (
-          <li key={c.toISOString()}>
+          <li key={c.toISOString()} onClick={() => openAddScheduleDialog()}>
+            {/* format("D")というメソッドを使うと指定した表示方式に沿ってフォーマットして表示 */}
+
             {/* <div className={styles.element}>{c.format("D")}</div> */}
             {/* <CalendarElement>{c.format("D")}</CalendarElement> */}
             {/* <CalendarElement day={c} /> */}

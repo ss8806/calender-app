@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 
 export const createCalendar = (month) => {
   const firstDay = getMonth(month);
+  //  最初の日の曜日のindexを取得
   const firstDayIndex = firstDay.day();
 
   return Array(35)
@@ -34,11 +35,11 @@ export const isSameMonth = (m1, m2) => {
 export const isFirstDay = (day) => day.date() === 1;
 
 export const getMonth = ({ year, month }) => {
-  return dayjs(`${year}-${month}`);
+  return dayjs(`${year}-${month}`); // 今日は 何年 何月何日 を表す
 };
 
 export const getNextMonth = (month) => {
-  const day = getMonth(month).add(1, "month");
+  const day = getMonth(month).add(1, "month"); // 次月
   return formatMonth(day);
 };
 

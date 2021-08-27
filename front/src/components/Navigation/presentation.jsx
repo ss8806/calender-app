@@ -40,8 +40,8 @@ const Navigation = ({ setNextMonth, setPreviousMonth, setMonth, month }) => {
       <StyledDatePicker
         // value={selectedDate}
         // onChange={handleDateChange}
-        value={month}
-        onChange={setMonth}
+        value={month} // なくても動く
+        onChange={setMonth} // なくても動く
         variant="inline"
         format="YYYY年 M月"
         animateYearScrolling
