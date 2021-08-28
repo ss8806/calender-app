@@ -28,7 +28,11 @@ const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
         ))}
 
         {calendar.map((c) => (
-          <li key={c.toISOString()} onClick={() => openAddScheduleDialog()}>
+          <li
+            key={c.toISOString()}
+            // 引数を追加
+            onClick={() => openAddScheduleDialog(c)}
+          >
             {/* format("D")というメソッドを使うと指定した表示方式に沿ってフォーマットして表示 */}
 
             {/* <div className={styles.element}>{c.format("D")}</div> */}
