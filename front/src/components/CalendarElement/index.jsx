@@ -8,9 +8,10 @@ import {
   getMonth,
 } from "../../services/calendar";
 import { Typography } from "@material-ui/core";
+import Schedule from "../Schedule";
 
 // CalendarBoard/presentationから dayとmonth が props として渡ってくる
-const CalendarElement = ({ day, month }) => {
+const CalendarElement = ({ day, month, schedules }) => {
   // const today = dayjs();
   // const compareFormat = "YYYYMMDD";
   // 当日かどうか判断
@@ -58,6 +59,11 @@ const CalendarElement = ({ day, month }) => {
           {day.format(format)}
         </span>
       </Typography>
+      <div className={styles.schedules}>
+        {schedules.map((e) => (
+          <Schedule key={e.id} schedule={e} />
+        ))}
+      </div>
     </div>
   );
 };

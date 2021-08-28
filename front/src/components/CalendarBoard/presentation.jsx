@@ -6,9 +6,9 @@ import CalendarElement from "../CalendarElement";
 //const calendar = createCalendar(); reduxで作成されるので不要
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
-// container.jsxのconnectより callendar, monthなどのstate,dispatchが使用できる
+
 const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
-  console.log(calendar); // calendarはstate
+  console.log(calendar);
 
   return (
     <div className={styles.container}>
@@ -27,18 +27,12 @@ const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
           </li>
         ))}
 
-        {calendar.map((c) => (
+        {calendar.map(({ date, schedules }) => (
           <li
-            key={c.toISOString()}
-            // 引数を追加
-            onClick={() => openAddScheduleDialog(c)}
+            key={date.toISOString()}
+            onClick={() => openAddScheduleDialog(date)}
           >
-            {/* format("D")というメソッドを使うと指定した表示方式に沿ってフォーマットして表示 */}
-
-            {/* <div className={styles.element}>{c.format("D")}</div> */}
-            {/* <CalendarElement>{c.format("D")}</CalendarElement> */}
-            {/* <CalendarElement day={c} /> */}
-            <CalendarElement day={c} month={month} />
+            <CalendarElement day={date} month={month} schedules={schedules} />
           </li>
         ))}
       </GridList>

@@ -4,13 +4,13 @@ import { formatMonth } from "../../services/calendar";
 
 const day = dayjs();
 
-// formatMonth で定義するため不要
+// 下記のformatMonth で定義するため不要
 // const init = {
 //   year: day.year(),
 //   month: day.month() + 1,
 // };
 
-const init = formatMonth(day);
+const init = formatMonth(day); // dayjsを初期化
 
 const calendarReducer = (state = init, action) => {
   const { type, payload } = action;
