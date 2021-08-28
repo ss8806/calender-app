@@ -3,9 +3,10 @@ import CalendarBoard from "./presentation";
 import { createCalendar } from "../../services/calendar";
 import { addScheduleOpenDialog } from "../../redux/addSchedule/actions";
 
-const mapStateToProps = (state) => ({ calendar: state.calendar });
+const mapStateToProps = (state) => ({ calendar: state.calendar }); // .calendarはrootReducerから
 
 const mapDispatchToProps = (dispatch) => ({
+  // dispatchを定義
   openAddScheduleDialog: () => {
     dispatch(addScheduleOpenDialog());
   },

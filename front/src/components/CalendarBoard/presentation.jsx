@@ -6,7 +6,7 @@ import CalendarElement from "../CalendarElement";
 //const calendar = createCalendar(); reduxで作成されるので不要
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
-
+// container.jsxのconnectより callendar, monthなどのstate,dispatchが使用できる
 const CalendarBoard = ({ calendar, month, openAddScheduleDialog }) => {
   console.log(calendar); // calendarはstate
 
