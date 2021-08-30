@@ -6,6 +6,10 @@ import {
   addScheduleSetValue,
 } from "../../redux/addSchedule/actions";
 import { setSchedules } from "../../services/schedule";
+import {
+  currentScheduleSetItem,
+  currentScheduleOpenDialog,
+} from "../../redux/currentSchedule/actions";
 
 const mapStateToProps = (state) => ({
   calendar: state.calendar,
@@ -17,6 +21,13 @@ const mapDispatchToProps = (dispatch) => ({
   openAddScheduleDialog: (d) => {
     dispatch(addScheduleOpenDialog());
     dispatch(addScheduleSetValue({ date: d }));
+  },
+  openCurrentScheduleDialog: (schedule, e) => {
+    // 他のイベントが発火するのをキャンセル
+    e.stopPropagation();
+
+    dispatch(currentScheduleSetItem(schedule));
+    dispatch(currentScheduleOpenDialog());
   },
 });
 
