@@ -32,7 +32,9 @@ const schedulesReducer = (state = init, action) => {
         ...state, //isLoadingはSCHEDULES_ADD_ITEMのときには無関係なので前回の state と同じものを返します
         // itemsは前回のitemsにpayloadとして渡ってきた新規の予定を追加した配列を返しています。
         // concat()とやっていることは同じですが、スプレッド演算子の方が完結に記述できるのでそれを使ってます。
-        items: [...state.items, { ...payload, id: state.items.length + 1 }],
+        // items: [...state.items, { ...payload, id: state.items.length + 1 }],
+        isLoading: false,
+        items: [...state.items, payload],
       };
     case SCHEDULES_SET_LOADING:
       return {
