@@ -9,6 +9,7 @@ import {
   formatMonth,
 } from "../../services/calendar";
 import { calendarSetMonth } from "../../redux/calendar/actions";
+import { asyncSchedulesFetchItem } from "../../redux/schedules/effects";
 
 const mapStateToProps = (state) => ({ calendar: state.calendar });
 
@@ -17,6 +18,9 @@ const mapDispatchToProps = (dispatch) => ({
   setMonth: (month) => {
     // reducer から return payload
     dispatch(calendarSetMonth(month));
+  },
+  fetchItem: (month) => {
+    dispatch(asyncSchedulesFetchItem(month));
   },
 });
 
@@ -30,16 +34,19 @@ const mergeProps = (stateProps, dispatchProps) => ({
   setNextMonth: () => {
     const nextMonth = getNextMonth(stateProps.calendar);
     dispatchProps.setMonth(nextMonth);
+    dispatchProps.fetchItem(nextMonth);
   },
   setPreviousMonth: () => {
     const previousMonth = getPreviousMonth(stateProps.calendar);
     dispatchProps.setMonth(previousMonth);
+    dispatchProps.fetchItem(nextMonth);
   },
   setMonth: (dayObj) => {
     // 変更が会った時はdayjsインスタンスが帰ってくるので redux の state に変換してから dispatch するようにします。
     // dayjs → reduxのstate
     const month = formatMonth(dayObj); // ymd
     dispatchProps.setMonth(month);
+    dispatchProps.fetchItem(nextMonth);
   },
 });
 
