@@ -55,9 +55,6 @@ const AddScheduleDialog = ({
               <Close />
             </IconButton>
           </Tooltip>
-          <IconButton onClick={closeDialog} size="small">
-            <Close />
-          </IconButton>
         </div>
       </DialogActions>
 

@@ -52,7 +52,7 @@ const CurrentScheduleDialog = ({
                 container
                 spacing={1}
                 alignItems="center"
-                justifyContent="space-between"
+                justify="space-between"
                 style={spacer(0, 30)}
               >
                 <Grid item>
@@ -74,7 +74,7 @@ const CurrentScheduleDialog = ({
                 container
                 spacing={1}
                 alignItems="center"
-                justifyContent="space-between"
+                justify="space-between"
                 style={spacer(0, 4)}
               >
                 <Grid item>
@@ -90,7 +90,7 @@ const CurrentScheduleDialog = ({
                 container
                 spacing={1}
                 alignItems="center"
-                justifyContent="space-between"
+                justify="space-between"
                 style={spacer(0, 4)}
               >
                 <Grid item>
