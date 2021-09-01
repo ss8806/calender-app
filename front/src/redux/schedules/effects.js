@@ -14,8 +14,8 @@ export const asyncSchedulesFetchItem =
     dispatch(schedulesSetLoading());
 
     try {
-      const result = await get(`schedules`); // テストのためエラーをおこす
-      // const result = await get(`schedules?month=${month}&year=${year}`);
+      // const result = await get(`schedules`); // テストのためエラーをおこす
+      const result = await get(`schedules?month=${month}&year=${year}`);
 
       const formatedSchedule = result.map((r) => formatSchedule(r));
 
