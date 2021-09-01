@@ -42,6 +42,7 @@ const AddScheduleDialog = ({
   saveSchedule,
   setIsEditStart,
 }) => {
+  // !title がtrueのとき(何も入力されてない) isStartEditを返す
   const isTitleInvalid = !title && isStartEdit;
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
@@ -66,7 +67,7 @@ const AddScheduleDialog = ({
           error={isTitleInvalid}
         />
         <div className={styles.validation}>
-          {isTitleInvalid && (
+          {isTitleInvalid && ( // isTitelInvalid がtrueのとき右辺を返す
             <Typography variant="caption" component="div" color="error">
               タイトルは必須です。
             </Typography>
@@ -123,7 +124,12 @@ const AddScheduleDialog = ({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="outlined" onClick={saveSchedule}>
+        <Button
+          color="primary"
+          variant="outlined"
+          onClick={saveSchedule}
+          disabled={!title} // title が空のときボタンを非表示にする
+        >
           保存
         </Button>
       </DialogActions>
